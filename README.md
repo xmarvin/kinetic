@@ -1,5 +1,7 @@
 # kinetic
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/buxlabs/kinetic.svg?token=2e82b76b98dc7471a959729d07c9033cb8bfddf964cc356a10e3aa365f4181db&ts=1522790975101)](https://greenkeeper.io/)
+
 Simple library which adds smooth drag scrolling with gradual deceleration to containers.
 
 All props go to [vanilla.kinetic](https://github.com/dzek69/vanilla.kinetic) and [jQuery.kinetic](https://github.com/davetayls/jquery.kinetic/). This repository holds a modern version and publishes the package via npm.
