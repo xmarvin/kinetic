@@ -1,13 +1,13 @@
 {
   "name": "@buxlabs/kinetic",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "kinetic javascript",
   "main": "build/index.js",
   "scripts": {
     "build": "rollup --config config.js",
     "prepublishOnly": "npm run build",
     "lint": "standard",
-    "test": "npm run build && node test.js"
+    "test": "npm run build && ava test/basic.js"
   },
   "repository": {
     "type": "git",
@@ -24,10 +24,13 @@
   },
   "homepage": "https://github.com/buxlabs/kinetic#readme",
   "devDependencies": {
+    "ava": "^0.25.0",
     "babel-plugin-external-helpers": "^6.22.0",
     "babel-plugin-transform-object-assign": "^6.22.0",
     "babel-preset-env": "^1.6.1",
     "browser-env": "^3.2.5",
+    "express": "^4.16.3",
+    "puppeteer": "^1.2.0",
     "rollup": "^0.57.1",
     "rollup-plugin-babel": "^3.0.3",
     "rollup-plugin-uglify": "^3.0.0",

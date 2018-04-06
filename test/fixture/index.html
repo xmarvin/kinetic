@@ -1,0 +1,34 @@
+<html>
+<body>
+<div id="kinetic">
+  <image src="image.jpeg">
+</div>
+<style type='text/css'>
+#kinetic {
+  height: 300px;
+  width: 300px;
+  overflow: hidden;
+}
+</style>
+<ul>
+  <li><a id="up">Up</a></li>
+  <li><a id="right">Right</a></li>
+  <li><a id="down">Down</a></li>
+  <li><a id="left">Left</a></li>
+</ul>
+<script src="index.js"></script>
+<script>
+function on (selector, event, callback) {
+  document.getElementById(selector).addEventListener(event, callback)
+}
+</script>
+<script>
+  const node = document.getElementById('kinetic')
+  const kinetic = new Kinetic(node)
+  on('up', 'click', () => kinetic.start({ velocityY: -90 }))
+  on('right', 'click', () => kinetic.start({ velocity: 90 }))
+  on('down', 'click', () => kinetic.start({ velocityY: 90 }))
+  on('left', 'click', () => kinetic.start({ velocity: -90 }))
+</script>
+</body>
+</html>

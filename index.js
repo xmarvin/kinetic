@@ -26,15 +26,14 @@ const DEFAULTS = {
 }
 
 class Kinetic {
-  contructor (element, settings) {
+  constructor(element, settings) {
     this.settings = Object.assign({}, DEFAULTS, settings)
     this.el = element
     this.ACTIVE_CLASS = 'kinetic-active'
     this._initElements()
     this.el._Kinetic = this
-    return this
   }
-  start (options) {
+  start(options) {
     this.settings = Object.assign(this.settings, options)
     this.velocity = options.velocity || this.velocity
     this.velocityY = options.velocityY || this.velocityY
