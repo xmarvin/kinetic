@@ -57,7 +57,7 @@ class Kinetic {
     this.el.style.cursor = ''
   }
   destroy () {
-    detach()
+    this.detach()
   }
   attach () {
     if (this.el.classList.contains(this.ACTIVE_CLASS)) {

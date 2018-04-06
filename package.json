@@ -1,13 +1,13 @@
 {
   "name": "@buxlabs/kinetic",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "kinetic javascript",
   "main": "build/index.js",
   "scripts": {
     "build": "rollup --config config.js",
     "prepublishOnly": "npm run build",
     "lint": "standard",
-    "test": "npm run build && ava test/basic.js"
+    "test": "npm run build && ava test/unit.js --require=./test/setup/env.js && ava test/feature.js"
   },
   "repository": {
     "type": "git",
