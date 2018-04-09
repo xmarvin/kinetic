@@ -1,6 +1,6 @@
 {
   "name": "@buxlabs/kinetic",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "kinetic javascript",
   "main": "build/index.js",
   "scripts": {
@@ -34,6 +34,7 @@
     "rollup": "^0.57.1",
     "rollup-plugin-babel": "^3.0.3",
     "rollup-plugin-uglify": "^3.0.0",
+    "sinon": "^4.5.0",
     "standard": "^11.0.1"
   }
 }

@@ -53,6 +53,10 @@ class Kinetic {
   }
   detach () {
     this._detachListeners()
+    if (this.document) {
+      this.document.removeEventListener('mouseup', this.documentResetHandler, false)
+      this.document.removeEventListener('click', this.documentResetHandler, false)
+    }
     this.el.classList.remove(this.ACTIVE_CLASS)
     this.el.style.cursor = ''
   }
@@ -89,10 +93,9 @@ class Kinetic {
       that._resetMouse.apply(that)
     }
 
-    // FIXME make sure to remove this
-    var html = document.documentElement
-    html.addEventListener('mouseup', this.documentResetHandler, false)
-    html.addEventListener('click', this.documentResetHandler, false)
+    this.document = document.documentElement
+    this.document.addEventListener('mouseup', this.documentResetHandler, false)
+    this.document.addEventListener('click', this.documentResetHandler, false)
 
     this._initEvents()
 
@@ -102,7 +105,7 @@ class Kinetic {
       var prefixes = ['', '-ms-', '-webkit-', '-moz-']
       var styles = {
         'transform': 'translate3d(0,0,0)',
-        'perspective': '1000', // TODO is this even valid? is this even needed?
+        'perspective': '1000',
         'backface-visibility': 'hidden'
       }
       for (var i = 0; i < prefixes.length; i++) {
@@ -116,13 +119,17 @@ class Kinetic {
     }
   }
 
+  _getTouches (e) {
+    return e.originalEvent.touches || e.originalEvent.changedTouches
+  }
+
   _initEvents () {
     var self = this
     this.settings.events = {
       touchStart: function (e) {
         var touch
         if (self._useTarget(e.target, e)) {
-          touch = e.originalEvent.touches[0]
+          touch = self._getTouches(e)[0]
           self.threshold = self._threshold(e.target, e)
           self._start(touch.clientX, touch.clientY)
           e.stopPropagation()
@@ -131,7 +138,7 @@ class Kinetic {
       touchMove: function (e) {
         var touch
         if (self.mouseDown) {
-          touch = e.originalEvent.touches[0]
+          touch = self._getTouches(e)[0]
           self._inputmove(touch.clientX, touch.clientY)
           if (e.preventDefault) {
             e.preventDefault()
@@ -403,7 +410,7 @@ class Kinetic {
 
   _getScroller () {
     // FIXME we may want to normalize behaviour across browsers as in original jQuery.kinetic
-    // currently this won't work correctly on all brwosers when attached to html or body element
+    // currently this won't work correctly on all browsers when attached to html or body element
     return this.el
   }
 
